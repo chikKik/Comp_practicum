@@ -1,11 +1,11 @@
-from flask import Flask, request, jsonify, render_template_string
-from cryptography.hazmat.primitives import padding, hashes
+from flask import Flask, request, jsonify, render_template_string#создание веб-приложения
+from cryptography.hazmat.primitives import padding, hashes#работа с криптографией
 from cryptography.hazmat.primitives.asymmetric import padding, rsa
 
 app = Flask(__name__)
 
 
-def generate_key():
+def generate_key():#создание приватного и публичного ключа
     private_key = rsa.generate_private_key(
         public_exponent=65537,
         key_size=2048,
@@ -13,7 +13,7 @@ def generate_key():
     public_key = private_key.public_key()
     return private_key, public_key
 
-def encrypt(text, public_key):
+def encrypt(text, public_key):#шифрование текста с исп. публичного ключа 
     encrypted = public_key.encrypt(
         text.encode('utf-8'),
         padding.OAEP(
@@ -24,7 +24,7 @@ def encrypt(text, public_key):
     )
     return encrypted
 
-def decrypt(encrypted_text, private_key):# Расшифровка
+def decrypt(encrypted_text, private_key):#дешифровка зашифрованного текста с исп. приватного ключа
     decrypted = private_key.decrypt(
         encrypted_text,
         padding.OAEP(
@@ -66,7 +66,7 @@ def index():
     return render_template_string(HTML_FORM)
 
 
-@app.route('/encrypt', methods=['POST'])
+@app.route('/encrypt', methods=['POST'])#орабатывает POST-запросы для шифрования текста
 def encrypt():
     text = request.form.get('text_to_encrypt')
     if not text:
@@ -77,7 +77,7 @@ def encrypt():
     return jsonify({"encrypted_data": encrypted_data.hex()})
 
 
-@app.route('/decrypt', methods=['POST'])
+@app.route('/decrypt', methods=['POST'])#обрабатывает POST-запросы для дешифрования
 def decypher():
     encrypted_data_hex = request.form.get('text_to_decrypt')
     if not encrypted_data_hex:
