@@ -13,7 +13,7 @@ def generate_key():#создание приватного и публичног�
     public_key = private_key.public_key()
     return private_key, public_key
 
-def encrypt(text, public_key):#шифрование текста с исп. публичного ключа 
+def encrypt_rsa(text, public_key):#шифрование текста с исп. публичного ключа 
     encrypted = public_key.encrypt(
         text.encode('utf-8'),
         padding.OAEP(
@@ -24,7 +24,7 @@ def encrypt(text, public_key):#шифрование текста с исп. пу
     )
     return encrypted
 
-def decrypt(encrypted_text, private_key):#дешифровка зашифрованного текста с исп. приватного ключа
+def decrypt_rsa(encrypted_text, private_key):#дешифровка зашифрованного текста с исп. приватного ключа
     decrypted = private_key.decrypt(
         encrypted_text,
         padding.OAEP(
@@ -72,12 +72,12 @@ def encrypt():
     if not text:
         return jsonify({"error": "Введите текст для шифрования"}), 400
     
-    encrypted_data = encrypt(text, public_key)
+    encrypted_data = encrypt_rsa(text, public_key)
 
     return jsonify({"encrypted_data": encrypted_data.hex()})
 
 
-@app.route('/decrypt', methods=['POST'])#обрабатывает POST-запросы для дешифрования
+@app.route('/decypher', methods=['POST'])#обрабатывает POST-запросы для дешифрования
 def decypher():
     encrypted_data_hex = request.form.get('text_to_decrypt')
     if not encrypted_data_hex:
@@ -85,7 +85,7 @@ def decypher():
 
     encrypted_data = bytes.fromhex(encrypted_data_hex)
 
-    decrypted_data = decrypt(encrypted_data, private_key)
+    decrypted_data = decrypt_rsa(encrypted_data, private_key)
 
     return jsonify({"decrypted_data": decrypted_data})
 
