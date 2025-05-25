@@ -49,6 +49,7 @@ requirements.txt
 pyTelegramBotAPI
 requests
 ```
+![repo_1_cp](https://github.com/user-attachments/assets/c9dc3865-24be-4104-8b37-f7e16ed5d56f)
 
 ## API gateway
 
@@ -67,6 +68,7 @@ paths:
         function_id: d4eoicoe1hruf0fvc64b
       operationId: tgbot
 ```
+![repo_2_cp](https://github.com/user-attachments/assets/f920d87e-7f80-42c7-9db7-961b338077ea)
 
 ## Webhook
 
@@ -77,8 +79,10 @@ curl.exe `
    --header '"Content-type: application/json"' `
    --data '"{ \"url\": \"https://d5dqpghsldljfvhqa669.ql6wied2.apigw.yandexcloud.net\" }"'
 ```
+<img width="715" alt="repo_4_cp" src="https://github.com/user-attachments/assets/9327c0d5-138e-4209-a18b-36864cf75e0e" />
 
 ## ник Telegram-бота
 ```
 @Translate_comp_practicum_bot
 ```
+<img width="666" alt="repo_3_cp" src="https://github.com/user-attachments/assets/08bbca6f-ee92-4122-ac0b-ed7d46d1fc02" />
