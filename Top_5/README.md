@@ -1,5 +1,5 @@
 Задача:
-Задание - доделать проект по WebAssembly - budget_planner_project.zip
+доделать проект по WebAssembly - budget_planner_project.zip
 1.	Изучить файл README.md внутри проекта и сделать первичное изучение кода самого проекта, понять общих принцип работы кода.
 2.	Скачать и установить компилятор для WebAssembly с сайта https://emscripten.org (см. README.md).
 3.	Добиться компиляции и работы самого приложения.
